@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Selamat Datang</title>
   <style>
     :root {
@@ -15,13 +15,14 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
     }
 
     html, body {
+      width: 100%;
       height: 100%;
       background-color: var(--sidebar-bg);
       overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
       color: var(--text-color);
     }
 
@@ -29,8 +30,8 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       z-index: 0;
       pointer-events: none;
     }
@@ -40,12 +41,13 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 36px;
-      font-weight: bold;
       text-align: center;
+      padding: 1rem;
+      font-weight: bold;
+      font-size: clamp(1.5rem, 6vw, 3rem); /* Responsif dari 24px s.d. 48px */
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
       opacity: 0;
       animation: fadeInOut 5s ease-in-out forwards;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
       z-index: 1;
     }
 
@@ -64,6 +66,12 @@
       100% {
         opacity: 0;
         transform: translate(-50%, -40%);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .welcome-text {
+        padding: 0.5rem;
       }
     }
   </style>
@@ -93,9 +101,9 @@
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * -canvas.height;
-        this.radius = Math.random() * 3 + 2;
-        this.speedY = Math.random() * 1.5 + 0.5;
-        this.speedX = Math.random() * 1 - 0.5;
+        this.radius = Math.random() * 3 + 1.5;
+        this.speedY = Math.random() * 1.2 + 0.5;
+        this.speedX = Math.random() * 0.6 - 0.3;
         this.opacity = Math.random() * 0.5 + 0.5;
       }
 
@@ -132,10 +140,10 @@
       requestAnimationFrame(animateSnow);
     }
 
-    initSnowflakes(200); // Tambah jumlah salju di sini
+    initSnowflakes(180); // Jumlah salju
     animateSnow();
 
-    // Redirect setelah 5 detik
+    // Redirect otomatis setelah 5 detik
     setTimeout(() => {
       window.location.href = "dashboard.html";
     }, 5000);
