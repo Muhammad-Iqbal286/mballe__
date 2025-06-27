@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memuat...</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --text: #f8fafc;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Roboto', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .rocket-wrapper {
+      position: relative;
+      width: 30vw;
+      max-width: 150px;
+      animation: launch 2s infinite ease-in-out;
+    }
+
+    .rocket-wrapper img {
+      width: 100%;
+      animation: shake 0.5s infinite alternate;
+    }
+
+    .flame {
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 30px;
+      background: radial-gradient(circle, orange 0%, red 80%);
+      border-radius: 50%;
+      animation: flame 0.3s infinite alternate;
+      z-index: -1;
+    }
+
+    .loading-text {
+      margin-top: 30px;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    @keyframes shake {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(2deg); }
+      100% { transform: rotate(-2deg); }
+    }
+
+    @keyframes flame {
+      0% { transform: scaleY(1); opacity: 1; }
+      100% { transform: scaleY(1.5); opacity: 0.6; }
+    }
+
+    @keyframes launch {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+
+  <script>
+    // Redirect ke halaman tujuan setelah 4 detik
+    setTimeout(() => {
+      window.location.href = "dashboard.html"; // Ganti ke halaman target kamu
+    }, 4000);
+  </script>
+</head>
+<body>
+  <div class="rocket-wrapper">
+    <img src="https://img.icons8.com/emoji/96/rocket-emji.png" alt="Roket" />
+    <div class="flame"></div>
+  </div>
+  <div class="loading-text">Memuat...</div>
+</body>
+</html>
