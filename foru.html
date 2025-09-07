@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cinta Kita</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #ffeef2;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    img {
+      max-height: 70vh;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .btn-lanjut {
+      margin-top: 1.5rem;
+      background: #ff4d6d;
+      color: white;
+      border-radius: 25px;
+      padding: 10px 25px;
+      transition: transform .3s ease;
+    }
+
+    .btn-lanjut:hover {
+      transform: scale(1.05);
+      background: #e63956;
+    }
+
+    /* Love background effect */
+    .love-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .love {
+      position: absolute;
+      color: rgba(255,0,76,0.3);
+      font-size: 24px;
+      animation: fall 8s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10%); opacity: 1; }
+      100% { transform: translateY(110%); opacity: 0; }
+    }
+
+    /* Overlay love animation */
+    .love-overlay {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.2);
+      font-size: 0;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 1s ease, opacity 1.2s ease;
+      color: #ff004c;
+    }
+    .love-overlay.show {
+      font-size: 200px;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.2rem;
+      color: #ff004c;
+    }
+
+    .flower {
+      font-size: 2rem;
+      filter: grayscale(100%) brightness(200%);
+    }
+  </style>
+</head>
+<body>
+  <!-- Musik -->
+  <audio autoplay loop>
+    <source src="rani.mp3" type="audio/mpeg">
+    Browser tidak mendukung audio.
+  </audio>
+
+  <!-- Background Love -->
+  <div class="love-bg"></div>
+
+  <!-- Overlay animasi love -->
+  <div id="loveOverlay" class="love-overlay">❤️</div>
+
+  <!-- Halaman 1 -->
+  <section id="page1" class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4">
+        <img src="rani1.jpg" class="img-fluid" alt="Foto 1">
+      </div>
+      <div class="col-md-6">
+        <h2>Senyummu adalah alasan kenapa hariku selalu indah ✨❤️</h2>
+        <a href="#page2" class="btn btn-lanjut">Lanjut</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Halaman 2 -->
+  <section id="page2" class="container">
+    <div class="row align-items-center flex-md-row-reverse">
+      <div class="col-md-6 mb-4">
+        <img src="rani2.jpg" class="img-fluid" alt="Foto 2">
+      </div>
+      <div class="col-md-6">
+        <h2>Dunia ini luas, tapi kamu adalah rumahku 🏡💕</h2>
+        <a href="#page3" class="btn btn-lanjut">Lanjut</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Halaman 3 -->
+  <section id="page3" class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 mb-4">
+        <img src="rani3.jpg" class="img-fluid" alt="Foto 3">
+      </div>
+      <div class="col-md-6">
+        <h2>Aku nggak butuh kata-kata rumit, cukup satu: aku cinta kamu ❤️</h2>
+        <a href="#akhir" class="btn btn-lanjut">Lanjut</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Halaman Akhir -->
+  <section id="akhir" class="container text-center">
+    <h1>Love u sayangku ❤️</h1>
+    <div class="flower">🌹 🌹 🌹 🌹 🌹 🌹</div>
+  </section>
+
+  <footer>
+    &copy; To Tri Maharani ❤️ from Muhammad Iqbal 
+  </footer>
+
+  <script>
+    // Love background
+    const loveBg = document.querySelector('.love-bg');
+    function createLove() {
+      const love = document.createElement('div');
+      love.classList.add('love');
+      love.innerHTML = '❤️';
+      love.style.left = Math.random() * 100 + 'vw';
+      love.style.fontSize = Math.random() * 20 + 15 + 'px';
+      love.style.animationDuration = Math.random() * 5 + 5 + 's';
+      loveBg.appendChild(love);
+      setTimeout(() => love.remove(), 10000);
+    }
+    setInterval(createLove, 500);
+
+    // Animasi love overlay
+    const overlay = document.getElementById("loveOverlay");
+    const lanjutBtns = document.querySelectorAll('.btn-lanjut');
+
+    lanjutBtns.forEach(btn => {
+      btn.addEventListener('click', (evt) => {
+        evt.preventDefault();
+        const targetId = btn.getAttribute('href');
+        const target = document.querySelector(targetId);
+
+        overlay.classList.add('show');
+
+        setTimeout(() => {
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+            history.replaceState(null, '', targetId);
+          }
+          overlay.classList.remove('show');
+        }, 1200);
+      });
+    });
+  </script>
+</body>
+</html>
